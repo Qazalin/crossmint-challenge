@@ -1,9 +1,9 @@
 // I'd normally have types in a seperate src/types dir but the scale of types is a lot smaller here
 
-export interface APIParams extends Record<string, string> {
+export interface APIParams {
   candidateId: string;
-  row: string;
-  column: string;
+  row: number;
+  column: number;
 }
 
 export interface APIResponse {
