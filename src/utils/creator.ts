@@ -12,7 +12,7 @@ type Planet = "Polyanet" | "Soloon" | "Cometh";
 export async function create<T extends APIParams>(
   planet: Planet,
   args: T,
-  method: "POST" | "DELETE"
+  method: "POST" | "DELETE" = "POST"
 ) {
   validateArgs(args, planet);
   args.candidateId = MY_ID;

@@ -1,16 +1,28 @@
-import { PHASE2_GOAL } from "../utils";
+import { APIParams, PHASE2_GOAL } from "../utils";
 import { create } from "../utils/creator";
 
 export async function phase2() {
-  const center = { x: 13, y: 13 };
-  create(
-    "Polyanet",
-    {
-      row: 13,
-      column: 13,
-    },
-    "POST"
-  );
+  // Top and bottom have the same pattern, right and left have the same pattern
+  const points: APIParams[] = [];
+
+  // Step 1: make the + in the center
+  const CENTER = 13;
+
+  // the direactions of each point of the +
+  const center = { row: CENTER, column: CENTER };
+  const left = { row: CENTER, column: CENTER - 1 };
+  const right = { row: CENTER, column: CENTER + 1 };
+  const bottom = { row: CENTER - 1, column: CENTER };
+  const top = { row: CENTER + 1, column: CENTER };
+  points.push(center, left, right, bottom, top);
+
+  // column is constant, row is increasing
+
+  /* 
+  for (let i = 0; i < points.length; i++) {
+    await create("Polyanet", points[i]);
+    }
+*/
 }
 
 // discovery
