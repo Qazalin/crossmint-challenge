@@ -6,12 +6,23 @@ import {
   SoloonsParams,
   create,
 } from ".";
+import { isStringInEnum } from "./validators";
 
 export async function drawCometh(
   column: number,
   row: number,
-  direction: ComethDirections
+  direction: string
 ) {
+  enum ComethDirection {
+    "up",
+    "down",
+    "left",
+    "right",
+  }
+
+  // validate the direction
+  isStringInEnum(direction, ComethDirection);
+
   const params: ComethParams = {
     column,
     row,

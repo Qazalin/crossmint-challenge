@@ -6,7 +6,6 @@ export default async function phase1() {
   const dims = 10; // 10x10 grid
   // The first 2 rows and columns from each side are empty
   const startIdx = 2;
-  const endIdx = dims - startIdx;
   const center = dims / 2 + 1;
 
   type Point = {
@@ -29,8 +28,8 @@ export default async function phase1() {
   for (const point of uniquePoints) {
     const params: PolyanetParams = {
       candidateId: MY_ID,
-      row: point.x,
-      column: point.y,
+      row: point.x.toString(),
+      column: point.y.toString(),
     };
     const res = await fetch(API_BASE_URL + "/polyanets", {
       method: "POST",

@@ -1,8 +1,7 @@
 import fetch from "node-fetch";
 import { API_BASE_URL, MY_ID } from "./constants";
-import { PolyanetParams, APIResponse } from "./types";
-
-type Planet = "Polyanet" | "Soloon" | "Cometh";
+import { PolyanetParams, APIResponse, PlanetTypes } from "./types";
+import { validateArgs } from "./validators";
 
 /** A simpler interface for interacting with the API with fewer lines of code
  * @param planet The planet to create
@@ -10,10 +9,11 @@ type Planet = "Polyanet" | "Soloon" | "Cometh";
  * @returns The response from the API
  */
 export async function create<T extends PolyanetParams>(
-  planet: Planet,
+  planet: PlanetTypes,
   args: T,
   method: "POST" | "DELETE" = "POST"
 ) {
+  // validate the arguments based on the planet type and throw a runtime error if the arguments aren't valid before going to the API
   validateArgs(args, planet);
   args.candidateId = MY_ID;
 
@@ -30,24 +30,5 @@ export async function create<T extends PolyanetParams>(
     console.log(
       `Successfuly performed ${method} for ${planet} at ${args.row}, ${args.column}`
     );
-  }
-}
-
-// A type gaurd for validating the arguments of the creator function before sending a request to the API
-function validateArgs(args: Record<string, unknown>, planet: Planet) {
-  switch (planet) {
-    case "Soloon":
-      if (!args.color) {
-        throw new Error("Color is required for Soloon");
-      }
-      break;
-    case "Cometh":
-      if (!args.direction) {
-        throw new Error("Direction is required for Cometh");
-      }
-
-      break;
-    default:
-      break;
   }
 }

@@ -1,27 +1,41 @@
 // I'd normally have types in a seperate src/types dir but the scale of types is a lot smaller here
 
 // Use this base type for Polyanets and extend it for other planets
-export interface PolyanetParams extends Record<string, unknown> {
+export interface PolyanetParams extends Record<string, string> {
   candidateId?: string;
-  row: number;
-  column: number;
+  row: string;
+  column: string;
 }
 
-export type SoloonColors = "blue" | "red" | "purple" | "white";
+export enum SoloonColor {
+  "blue",
+  "red",
+  "purple",
+  "white",
+}
+
+export enum ComethDirection {
+  "top",
+  "down",
+  "left",
+  "right",
+}
+
 export interface SoloonsParams extends PolyanetParams {
-  color: SoloonColors;
+  color: string;
 }
 
-export type ComethDirections = "up" | "down" | "left" | "right";
 export interface ComethParams extends PolyanetParams {
-  direction: ComethDirections;
+  direction: string;
 }
 
 export interface APIResponse {
   error: boolean;
   message?: string; // the successsful response doesn't have a message
 }
-export type Planets =
+
+export type PlanetTypes = "Polyanet" | "Soloon" | "Cometh";
+export type PlanetsPhase2 =
   | "POLYANET"
   | "RIGHT_COMETH"
   | "LEFT_COMETH"
