@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { API_BASE_URL, MY_ID } from "./constants";
-import { APIParams, APIResponse } from "./types";
+import { PolyanetParams, APIResponse } from "./types";
 
 type Planet = "Polyanet" | "Soloon" | "Cometh";
 
@@ -9,7 +9,7 @@ type Planet = "Polyanet" | "Soloon" | "Cometh";
  * @param args The arguments for the planet
  * @returns The response from the API
  */
-export async function create<T extends APIParams>(
+export async function create<T extends PolyanetParams>(
   planet: Planet,
   args: T,
   method: "POST" | "DELETE" = "POST"

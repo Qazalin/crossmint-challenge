@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { APIParams, APIResponse, API_BASE_URL, MY_ID } from "../utils";
+import { PolyanetParams, APIResponse, API_BASE_URL, MY_ID } from "../utils";
 import { dropDuplicates } from "../utils/dropDuplicates";
 
 export default async function phase1() {
@@ -27,7 +27,7 @@ export default async function phase1() {
   const uniquePoints = dropDuplicates(points, ["x", "y"]); // The loop has some duplicate items in it, to save API requests, we drop the duplicates
 
   for (const point of uniquePoints) {
-    const params: APIParams = {
+    const params: PolyanetParams = {
       candidateId: MY_ID,
       row: point.x,
       column: point.y,

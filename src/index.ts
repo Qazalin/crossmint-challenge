@@ -1,6 +1,6 @@
-import phase1 from "./phases/phase1";
 import { phase2 } from "./phases/phase2";
-import { whatsMyGoal } from "./utils/getGoal";
 
-// phase1();
-phase2();
+// API errors are handled in the create() function in ./utils/creator.ts
+phase2().catch((e) =>
+  console.error(`There was an error in running the function: ${e}`)
+);
